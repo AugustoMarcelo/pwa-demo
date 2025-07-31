@@ -22,6 +22,13 @@ if ("serviceWorker" in navigator) {
     return isIos() && isSafari() && !isInStandaloneMode();
   }
   
+  function hidePrompt() {
+    const promptElement = document.getElementById('ios-pwa-prompt');
+    if (promptElement) {
+      promptElement.style.display = 'none';
+    }
+  }
+  
   function showInstallPrompt() {
     const promptElement = document.getElementById('ios-pwa-prompt');
     if (!promptElement) {
@@ -42,13 +49,13 @@ if ("serviceWorker" in navigator) {
             <div class="ios-prompt-instructions">
               <div class="ios-prompt-step">
                 <div class="ios-prompt-icon">
-                  <img src="./icons/share.png" alt="Share" width="24" height="24">
+                  <img src="./icons/share.svg" alt="Share" width="24" height="24">
                 </div>
                 <span>1) Press the 'Share' button</span>
               </div>
               <div class="ios-prompt-step">
                 <div class="ios-prompt-icon">
-                  <img src="./icons/add-to-home-screen.png" alt="Add to Home Screen" width="24" height="24">
+                  <img src="./icons/add-square.svg" alt="Add to Home Screen" width="24" height="24">
                 </div>
                 <span>2) Press 'Add to Home Screen'</span>
               </div>
@@ -61,7 +68,7 @@ if ("serviceWorker" in navigator) {
 
   // Show prompt when page loads if conditions are met
   window.addEventListener('load', () => {
-    if (shouldShowPrompt()) {
+    if (!shouldShowPrompt()) {
       setTimeout(showInstallPrompt, 1000);
     }
   });
