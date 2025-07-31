@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+  background: #f3f3f3;
+  color: #333;
+}
+
+button {
+  background: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+.logo-container {
+  margin-bottom: 16px;
+}
+.logo-99x {
+  display: inline-block;
+  vertical-align: middle;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 4px 8px;
+}
+#ios-pwa-prompt {
+  background: #fffbe6;
+  border: 1px solid #A2B372;
+  color: #333;
+  padding: 18px 16px 12px 16px;
+  border-radius: 10px;
+  max-width: 340px;
+  margin: 24px auto 0 auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  font-size: 16px;
+  text-align: left;
+  position: relative;
+}
+#ios-pwa-prompt button {
+  background: #A2B372;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#ios-pwa-prompt .close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #C49FD5;
+  cursor: pointer;
+}
