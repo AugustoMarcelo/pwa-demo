@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  pwa-installer:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: pwa-installer
+    ports:
+      - "8080:80"
+    restart: unless-stopped 
