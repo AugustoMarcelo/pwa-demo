@@ -60,8 +60,32 @@ if ("serviceWorker" in navigator) {
   // Android native install prompt - let it use the native prompt
   window.addEventListener('beforeinstallprompt', (e) => {
     console.log("📱 Android native install prompt available");
+    console.log("🎯 beforeinstallprompt event fired - this means the PWA meets install criteria!");
     // Don't prevent default - let Android show its native prompt
     deferredPrompt = e;
+  });
+  
+  // Log when the page loads to help debug
+  window.addEventListener('load', () => {
+    console.log("🌐 Page fully loaded");
+    console.log("📱 Device detection:", {
+      isIOS: isIos(),
+      isAndroid: isAndroid(),
+      isSafari: isSafari(),
+      userAgent: navigator.userAgent,
+      standalone: window.navigator.standalone,
+      displayMode: window.matchMedia && window.matchMedia('(display-mode: standalone)').matches
+    });
+    
+    // Check if PWA criteria are met
+    const hasManifest = document.querySelector('link[rel="manifest"]');
+    const hasServiceWorker = 'serviceWorker' in navigator;
+    console.log("🔍 PWA Criteria check:", {
+      hasManifest: !!hasManifest,
+      hasServiceWorker: hasServiceWorker,
+      isHTTPS: location.protocol === 'https:',
+      manifestHref: hasManifest ? hasManifest.href : 'none'
+    });
   });
   
   // Show prompt after page loads
@@ -79,6 +103,11 @@ if ("serviceWorker" in navigator) {
     // For Android, let the native prompt handle it
     if (isAndroid()) {
       console.log("🤖 Android detected, will use native install prompt");
+      console.log("💡 If you don't see the native prompt, check:");
+      console.log("   - App is not already installed");
+      console.log("   - You're using Chrome/Edge on Android");
+      console.log("   - You haven't dismissed the prompt before");
+      console.log("   - PWA criteria are met (manifest, service worker, HTTPS)");
     }
   });
   
