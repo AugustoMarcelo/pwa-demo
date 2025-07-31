@@ -4,10 +4,16 @@ if ("serviceWorker" in navigator) {
     .catch(err => console.log("❌ Error registering SW", err));
 }
 
-// PWA Install Prompt (iOS custom only)
+// PWA Install Prompt (iOS custom, Android native)
 (function() {
+  let deferredPrompt;
+  
   function isIos() {
     return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+  }
+  
+  function isAndroid() {
+    return /android/i.test(window.navigator.userAgent);
   }
   
   function isInStandaloneMode() {
@@ -18,7 +24,7 @@ if ("serviceWorker" in navigator) {
     return isIos() && /safari/i.test(window.navigator.userAgent) && !/crios|fxios|opera|edgios/i.test(window.navigator.userAgent);
   }
   
-  function shouldShowPrompt() {
+  function shouldShowIosPrompt() {
     return isIos() && isSafari() && !isInStandaloneMode();
   }
   
@@ -66,16 +72,26 @@ if ("serviceWorker" in navigator) {
     `;
   }
 
-  // Show prompt when page loads if conditions are met
+  // Android native install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    console.log("📱 Android native install prompt available");
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // The native prompt will show automatically on Android
+    // We don't need to do anything else - the browser handles it
+  });
+
+  // Show iOS prompt when page loads if conditions are met
   window.addEventListener('load', () => {
-    if (shouldShowPrompt()) {
+    if (shouldShowIosPrompt()) {
       setTimeout(showInstallPrompt, 1000);
     }
   });
 
-  // Also show prompt if user returns to page (e.g., from app switcher)
+  // Also show iOS prompt if user returns to page (e.g., from app switcher)
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && shouldShowPrompt()) {
+    if (document.visibilityState === 'visible' && shouldShowIosPrompt()) {
       setTimeout(showInstallPrompt, 500);
     }
   });
