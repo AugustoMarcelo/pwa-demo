@@ -31,6 +31,99 @@ button:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   padding: 4px 8px;
 }
+
+/* iOS Prompt Modal Styles */
+.ios-prompt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.ios-prompt-modal {
+  background: #1c1c1e;
+  color: white;
+  border-radius: 12px 12px 0 0;
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ios-prompt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #2c2c2e;
+}
+
+.ios-prompt-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.ios-prompt-cancel {
+  background: none;
+  border: none;
+  color: #007aff;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 400;
+}
+
+.ios-prompt-cancel:hover {
+  background: none;
+  opacity: 0.8;
+}
+
+.ios-prompt-content {
+  padding: 20px;
+}
+
+.ios-prompt-content p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #e5e5e7;
+}
+
+.ios-prompt-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ios-prompt-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: white;
+}
+
+.ios-prompt-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: #2c2c2e;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* Legacy styles for backward compatibility */
 #ios-pwa-prompt {
   background: #fffbe6;
   border: 1px solid #A2B372;
