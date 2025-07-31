@@ -15,7 +15,65 @@
   <h1>99x PWA Installer</h1>
   <p>This site works offline and can be installed as an app!</p>
   <button onclick="alert('You clicked the button!')">Click here</button>
+  
+  <!-- Debug section -->
+  <div style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 5px;">
+    <small>
+      Debug: 
+      <button onclick="testPrompt()" style="font-size: 12px; padding: 5px;">Test iOS Prompt</button>
+      <button onclick="showDeviceInfo()" style="font-size: 12px; padding: 5px;">Device Info</button>
+    </small>
+  </div>
+  
   <div id="ios-pwa-prompt" style="display:none;"></div>
   <script src="app.js"></script>
+  
+  <script>
+    function testPrompt() {
+      console.log("🧪 Manual test triggered");
+      var prompt = document.getElementById('ios-pwa-prompt');
+      if (prompt) {
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+        const isAndroid = /android/i.test(navigator.userAgent);
+        
+        if (isIOS) {
+          prompt.innerHTML = `
+            <button class="close" aria-label="Close" onclick="this.parentNode.style.display='none';">&times;</button>
+            <strong>Test: Install 99x PWA Installer (iOS)</strong><br/>
+            To install this app, tap <span style="font-size:1.2em;">&#x2191;</span> and then <b>Add to Home Screen</b>.
+            <br/>
+            <small>Works offline and saves as an app!</small>
+          `;
+          prompt.style.display = 'block';
+        } else if (isAndroid) {
+          alert("Android uses native install prompt. Look for the install button in your browser or address bar.");
+        } else {
+          prompt.innerHTML = `
+            <button class="close" aria-label="Close" onclick="this.parentNode.style.display='none';">&times;</button>
+            <strong>Test: Install 99x PWA Installer (Desktop)</strong><br/>
+            Look for the install button in your browser's address bar.
+            <br/>
+            <small>Works offline and saves as an app!</small>
+          `;
+          prompt.style.display = 'block';
+        }
+      }
+    }
+    
+    function showDeviceInfo() {
+      const info = {
+        userAgent: navigator.userAgent,
+        isIOS: /iphone|ipad|ipod/i.test(navigator.userAgent),
+        isAndroid: /android/i.test(navigator.userAgent),
+        isSafari: /safari/i.test(navigator.userAgent),
+        isChrome: /chrome/i.test(navigator.userAgent),
+        isFirefox: /firefox/i.test(navigator.userAgent),
+        standalone: window.navigator.standalone,
+        displayMode: window.matchMedia && window.matchMedia('(display-mode: standalone)').matches
+      };
+      console.log("📱 Device Info:", info);
+      alert("Check console for device info!");
+    }
+  </script>
 </body>
 </html>
