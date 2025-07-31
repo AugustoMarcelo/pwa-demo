@@ -68,7 +68,7 @@ if ("serviceWorker" in navigator) {
 
   // Show prompt when page loads if conditions are met
   window.addEventListener('load', () => {
-    if (!shouldShowPrompt()) {
+    if (shouldShowPrompt()) {
       setTimeout(showInstallPrompt, 1000);
     }
   });
