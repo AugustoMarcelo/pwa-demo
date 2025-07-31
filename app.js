@@ -41,11 +41,15 @@ if ("serviceWorker" in navigator) {
             <p>This website has app functionality. Add it to your home screen to use it in fullscreen and while offline.</p>
             <div class="ios-prompt-instructions">
               <div class="ios-prompt-step">
-                <div class="ios-prompt-icon">📤</div>
+                <div class="ios-prompt-icon">
+                  <img src="./icons/share.png" alt="Share" width="24" height="24">
+                </div>
                 <span>1) Press the 'Share' button</span>
               </div>
               <div class="ios-prompt-step">
-                <div class="ios-prompt-icon">🏠</div>
+                <div class="ios-prompt-icon">
+                  <img src="./icons/add-to-home-screen.png" alt="Add to Home Screen" width="24" height="24">
+                </div>
                 <span>2) Press 'Add to Home Screen'</span>
               </div>
             </div>
