@@ -52,6 +52,14 @@ button:hover {
   max-width: 400px;
   margin: 0;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.ios-prompt-modal.ios-prompt-modal--visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .ios-prompt-header {

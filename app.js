@@ -45,7 +45,7 @@ if ("serviceWorker" in navigator) {
     promptElement.style.display = 'block';
     promptElement.innerHTML = `
       <div class="ios-prompt-overlay">
-        <div class="ios-prompt-modal">
+        <div class="ios-prompt-modal" id="ios-prompt-modal">
           <div class="ios-prompt-header">
             <h3>Add to Home Screen</h3>
             <button class="ios-prompt-cancel" onclick="this.closest('.ios-prompt-overlay').style.display='none';">Cancel</button>
@@ -70,6 +70,13 @@ if ("serviceWorker" in navigator) {
         </div>
       </div>
     `;
+    // Animate modal after a short delay
+    setTimeout(() => {
+      const modal = document.getElementById('ios-prompt-modal');
+      if (modal) {
+        modal.classList.add('ios-prompt-modal--visible');
+      }
+    }, 100); // slight delay for animation
   }
 
   // Android native install prompt
@@ -77,15 +84,13 @@ if ("serviceWorker" in navigator) {
     console.log("📱 Android native install prompt available");
     e.preventDefault();
     deferredPrompt = e;
-    
     // The native prompt will show automatically on Android
-    // We don't need to do anything else - the browser handles it
   });
 
   // Show iOS prompt when page loads if conditions are met
   window.addEventListener('load', () => {
     if (shouldShowIosPrompt()) {
-      setTimeout(showInstallPrompt, 1000);
+      setTimeout(showInstallPrompt, 1500); // 1.5s delay for smoothness
     }
   });
 
